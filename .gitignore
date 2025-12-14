@@ -1,0 +1,65 @@
+# ----------------------------------------------------------------------
+# Composer Dependencies
+# ----------------------------------------------------------------------
+/vendor/
+
+# ----------------------------------------------------------------------
+# Environment Variables
+# ----------------------------------------------------------------------
+# .env contains sensitive information (database passwords, API keys).
+# We only commit .env.example
+.env
+.env.backup
+.env.production
+
+# ----------------------------------------------------------------------
+# Database
+# ----------------------------------------------------------------------
+# Ignore local SQLite databases
+/database/*.sqlite
+/database/*.db
+/database/*.sqlite3
+
+# Keep the database directory structure even if empty
+!/database/.gitkeep
+
+# ----------------------------------------------------------------------
+# System & IDE Files
+# ----------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ----------------------------------------------------------------------
+# Public Uploads
+# ----------------------------------------------------------------------
+# Ignore files uploaded by users (media)
+/public/uploads/*
+/public/media/*
+
+# Keep the folder structure for uploads
+!/public/uploads/.gitkeep
+!/public/media/.gitkeep
+
+# ----------------------------------------------------------------------
+# Logs
+# ----------------------------------------------------------------------
+*.log
+/logs/*
+!/logs/.gitkeep
+
+# ----------------------------------------------------------------------
+# Node Modules
+# ----------------------------------------------------------------------
+/node_modules
+/npm-debug.log
+/yarn-error.log
+
+**/__pycache__
+
+**api_tests/*.json
