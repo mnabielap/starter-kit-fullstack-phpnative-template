@@ -1,0 +1,95 @@
+:root {
+    --vz-primary: #405189;
+    --vz-secondary: #3577f1;
+    --vz-bg: #f3f3f9;
+    --vz-card-bg: #ffffff;
+    --vz-text: #212529;
+    --vz-sidebar-width: 250px;
+}
+
+body {
+    background-color: var(--vz-bg);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--vz-text);
+    overflow-x: hidden;
+}
+
+/* Auth Layout */
+.auth-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #405189, #3577f1);
+}
+.auth-card {
+    background: var(--vz-card-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+/* Dashboard Layout */
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-menu {
+    width: var(--vz-sidebar-width);
+    background-color: var(--vz-primary);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1002;
+    transition: all 0.3s ease;
+}
+
+.app-menu .navbar-brand-box {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+.app-menu .nav-link {
+    color: rgba(255,255,255,0.7);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.app-menu .nav-link:hover, .app-menu .nav-link.active {
+    color: #fff;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.main-content {
+    margin-left: var(--vz-sidebar-width);
+    width: calc(100% - var(--vz-sidebar-width));
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.top-tagbar {
+    background: var(--vz-card-bg);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    margin-bottom: 1.5rem;
+}

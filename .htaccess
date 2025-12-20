@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Prevent Directory Listing (User cannot see list of files)
+    Options -Indexes
+
+    # 2. Block access to Sensitive Files and Directories
+    # Blocks: .env, .git, composer.json, composer.lock, .dockerignore, etc.
+    RewriteRule ^\. - [F]
+    RewriteRule ^composer\.(json|lock)$ - [F]
+    RewriteRule ^package(-lock)?\.json$ - [F]
+    RewriteRule ^README\.md$ - [F]
+    RewriteRule ^Dockerfile$ - [F]
+
+    # 3. Block access to System Folders
+    # User cannot access these folders directly via browser
+    RewriteRule ^(src|views|config|routes|database|api_tests|vendor) - [F,L]
+
+    # 4. Allow access ONLY to 'public' folder and 'index.php'
+    # This logic allows the root index.php to execute the redirect,
+    # and allows assets inside public/ to be loaded.
+</IfModule>
