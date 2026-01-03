@@ -1,23 +1,21 @@
 import sys
 import os
-
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-import utils
+from utils import send_and_print, BASE_URL
 
-# Dummy token (Replace this manually if you want to test success)
-token = "dummy_reset_token_from_email_logs"
-new_password = "newpassword123"
+print("--- RESET PASSWORD ---")
 
-url = f"{utils.BASE_URL}/auth/reset-password?token={token}"
-body = {
-    "password": new_password
+mock_token = "PUT_VALID_TOKEN_HERE_FROM_LOGS" 
+
+url = f"{BASE_URL}/auth/reset-password?token={mock_token}"
+
+payload = {
+    "password": "newpassword123"
 }
 
-print("--- Testing Reset Password (Expect 401 if token is invalid) ---")
-
-response = utils.send_and_print(
+response = send_and_print(
     url=url,
     method="POST",
-    body=body,
+    body=payload,
     output_file=f"{os.path.splitext(os.path.basename(__file__))[0]}.json"
 )

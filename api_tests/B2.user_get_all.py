@@ -1,21 +1,22 @@
 import sys
 import os
-
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-import utils
+from utils import send_and_print, BASE_URL, load_config
 
-token = utils.load_config("accessToken")
+print("--- GET ALL USERS ---")
+
+token = load_config("accessToken")
 if not token:
-    print("[ERROR] No access token.")
+    print("Error: No access token. Run A2.auth_login.py first.")
     sys.exit(1)
 
-# Query params example
-url = f"{utils.BASE_URL}/users?limit=10&page=1&sortBy=created_at:desc"
+# Query parameters: Page 1, Limit 10, Sort by created_at DESC
+url = f"{BASE_URL}/users?page=1&limit=10&sortBy=created_at:desc"
 headers = {
     "Authorization": f"Bearer {token}"
 }
 
-response = utils.send_and_print(
+response = send_and_print(
     url=url,
     headers=headers,
     method="GET",

@@ -1,40 +1,34 @@
 import sys
 import os
 import time
-import random
-
-# Add current directory to sys.path to import utils
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-import utils
+from utils import send_and_print, BASE_URL, save_config
 
-# Generate unique user data
-timestamp = int(time.time())
-random_number = random.randint(100, 999)
-email = f"user_{timestamp}_{random_number}@example.com"
-password = "password1"
-name = f"Test User {random_number}"
+# Generate a unique email to avoid conflict
+unique_id = int(time.time())
+email = f"testuser_{unique_id}@example.com"
 
-# Save this email to config so A2 can login with it
-utils.save_config("last_registered_email", email)
-utils.save_config("last_registered_password", password)
+print(f"--- REGISTERING NEW USER: {email} ---")
 
-url = f"{utils.BASE_URL}/auth/register"
-body = {
-    "name": name,
+url = f"{BASE_URL}/auth/register"
+
+payload = {
+    "name": "Test User Automator",
     "email": email,
-    "password": password
+    "password": "password123",
+    "role": "user",
 }
 
-print(f"--- Attempting to register: {email} ---")
-
-response = utils.send_and_print(
+response = send_and_print(
     url=url,
     method="POST",
-    body=body,
+    body=payload,
     output_file=f"{os.path.splitext(os.path.basename(__file__))[0]}.json"
 )
 
-# If successful, we can optionally save tokens, but A2 will test login explicitly.
+# Optional: Save tokens if you want to use this user immediately
 if response.status_code == 201:
     data = response.json()
-    print("\n[SUCCESS] User registered.")
+    save_config("accessToken", data['tokens']['access']['token'])
+    save_config("refreshToken", data['tokens']['refresh']['token'])
+    print(">>> Registration successful. Tokens saved to secrets.json.")
