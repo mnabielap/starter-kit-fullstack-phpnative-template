@@ -44,6 +44,8 @@ class AuthController extends Controller
         }
 
         try {
+            $body['role'] = 'user';
+
             $user = $this->userService->createUser($body);
             $tokens = $this->tokenService->generateAuthTokens($user);
             
